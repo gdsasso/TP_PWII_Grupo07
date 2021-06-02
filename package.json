@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gdsasso/TP_PWII_Grupo07/issues"
   },
-  "homepage": "https://github.com/gdsasso/TP_PWII_Grupo07#readme"
+  "homepage": "https://github.com/gdsasso/TP_PWII_Grupo07#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
