@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 -- Table `tasksDatabase`.`tasks`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tasksDatabase`.`tasks` (
-  `idtasks` INT NULL AUTO_INCREMENT,
+  `idtasks` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
   `description` MEDIUMTEXT NULL,
   `state` VARCHAR(10) NOT NULL DEFAULT 'Pendiente',
