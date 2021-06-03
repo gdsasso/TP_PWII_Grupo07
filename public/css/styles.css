@@ -1,0 +1,23 @@
+#login-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card-panel{
+    width: 50%;
+}
+
+.text-title{
+ text-align: center;
+ color: #26a69a;
+}
+
+.button-add{
+    margin-top: 10px;
+}
+
+.form-tasks{
+    padding: 10px;
+}

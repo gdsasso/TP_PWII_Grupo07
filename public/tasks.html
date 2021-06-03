@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appTasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+          <a href="#!" class="brand-logo ">appTasks</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#">Bienvenido nombre usuario</a></li>
+            <li><a href="index.html">Cerrar Sesion</a></li>
+            
+            
+          </ul>
+        </div>
+        
+      </nav>
+    
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="#">Bienvenido nombre usuario</a></li>
+        <li><a href="index.html">Cerrar Sesion</a></li>
+      </ul>
+
+      <div class="row">
+        <div class="col s12 m4 l10"></div>
+        <div class="col s12 m4 l2 button-add">
+            <a id="buttonAddTasks" class="waves-effect waves-light btn-small">Agregar tarea</a>
+        </div>
+      </div>
+      
+      <!--Formulario agregar tarea-->
+      <div class="row">
+            <div class="col s3"></div>
+            <div id="cardFormTasksAdd" class="col s6 card-panel animated bounceIn delay-0s">
+                <h5 class="text-title">Ingresar tareas</h5>
+                <form class="form-tasks">
+                    <div class="row">
+                        <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Tarea</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Descripción</label>
+                        </div>
+                    </div>
+                    <div class="row right-align">
+                        <button class="btn waves-effect waves-light " type="submit" name="action">Agregar
+                            <i class="material-icons right">send</i>
+                          </button>
+                    </div>
+                </form>
+             </div>
+            <div class="col s3"></div>
+      </div>
+
+      <!--Formulario editar tarea-->
+      <div class="row">
+        <div class="col s3"></div>
+        <div id="cardFormTasksEdit" class="col s6 card-panel animated bounceIn delay-0s">
+            <h5 class="text-title">Editar tarea</h5>
+            <form class="form-tasks">
+                <div class="row">
+                    <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Tarea</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Descripción</label>
+                    </div>
+                </div>
+                <div class="row right-align">
+                    <button class="btn waves-effect waves-light " type="submit" name="action">Editar
+                        <i class="material-icons right">send</i>
+                      </button>
+                </div>
+            </form>
+         </div>
+        <div class="col s3"></div>
+  </div>
+
+
+
+      <div class="text-title">
+        <h4 class="animated bounceIn delay-0s">Listado de tareas</h4>
+    </div>
+
+      <div class="row">
+        <div class="col s12 m4 l1"></div>
+        <div class="col s12 m4 l10">
+            <!--<template id="contentRow">-->
+                <table class="highlight" id="contentTable">
+                <thead>
+                <tr>
+                    <th>Tarea</th>
+                    <th>Descipción</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+        
+                <tbody>
+                <tr>
+                    <td>Terminar base de datos</td>
+                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
+                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
+                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
+                    </td>
+                    <td>Pendiente</td>
+                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
+                </tr>
+                <tr>
+                    <td>Terminar frontend</td>
+                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
+                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
+                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
+                    </td>
+                    <td>Pendiente</td>
+                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
+                </tr>
+                <tr>
+                    <td>Terminar backend</td>
+                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
+                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
+                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
+                    </td>
+                    <td>Pendiente</td>
+                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        <!--</template>-->
+        </div>
+        <div class="col s12 m4 l1"></div>
+        
+      </div>
+
+      
+     
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="app.js"></script>
+    
+</body>
+
+</html>
