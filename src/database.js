@@ -73,5 +73,25 @@ let connection;
 module.exports = {
     async initDB() {
       connection = await mysql.createConnection(DB_CONFIG)
-    }};
+    },
+  
+    /**
+   * Buscar usuarios.
+   *
+   * @param {TFilterQuery} query Query de búsqueda.
+   * @returns {TUserDB[]}
+   */
+  async search(query) {
+    const paramsString = Object.keys(query) // ["name", "password"]
+      .map((elem) => `${elem} = ?`) // ["name = ?", "password = ?"]
+      .join(' AND '); // "name = ? AND password = ?"
+
+    const [users] = await connection.execute(
+      `SELECT * FROM users WHERE ${paramsString}`,
+      Object.values(query)
+    );
+
+    return users;
+  }
+};
 
