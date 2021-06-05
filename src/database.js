@@ -20,11 +20,9 @@ let connection;
   }
   
   /**
-   * @typedef {Object} TUser
-   * @property {string} username Usuario.
-   * @property {string} password Password.
-   * @property {string} name Nombre.
-   * @property {number} age Edad.
+   * @typedef {Object} TTask
+   * @property {string} title Título.
+   * @property {string} description Descripcion.
    *
    * @typedef {TUser & {
    *    id: number,
