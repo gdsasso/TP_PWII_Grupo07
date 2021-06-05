@@ -76,22 +76,22 @@ module.exports = {
     },
   
     /**
-   * Buscar usuarios.
+   * Buscar Tareas.
    *
    * @param {TFilterQuery} query Query de búsqueda.
-   * @returns {TUserDB[]}
+   * @returns {TTasksDB[]}
    */
   async search(query) {
-    const paramsString = Object.keys(query) // ["name", "password"]
-      .map((elem) => `${elem} = ?`) // ["name = ?", "password = ?"]
-      .join(' AND '); // "name = ? AND password = ?"
+    const paramsString = Object.keys(query) // ["title", "description", "state", "idusers", "created_at", "updated_at"]
+      .map((elem) => `${elem} = ?`) // ["title = ?", "description = ?", "state = ?", "idusers = ?", "created_at = ?", "updated_at = ?"]
+      .join(' AND '); // "title = ? AND description = ? AND state = ? AND iduser = ? AND created_at = ? AND update_at = ?"
 
-    const [users] = await connection.execute(
-      `SELECT * FROM users WHERE ${paramsString}`,
+    const [tasks] = await connection.execute(
+      `SELECT * FROM tasks WHERE ${paramsString}`,
       Object.values(query)
     );
 
-    return users;
+    return tasks;
   }
 };
 
