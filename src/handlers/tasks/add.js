@@ -1,9 +1,3 @@
-// module.exports = (route) => {
-//     route.get('/',(req, res) => {
-//         res.json("hola");
-//       })
-//   };
-
 const database = require('../../database');
 const validateErrors = require('../../validations/validateErrors');
 
