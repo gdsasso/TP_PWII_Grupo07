@@ -40,33 +40,16 @@ let connection;
   /**
    * Validar datos del usuario.
    *
-   * @param {TUser} userData
+   * @param {TTask} taskData
    */
-  function validateUser(userData) {
-    if (!userData) {
-      throw new Error(`No se ha definidio el usuario`);
+  function validateTask(taskData) {
+    if (!taskData) {
+      throw new Error(`No se ha definidio una tarea`);
     }
   
-    if (!userData.name || !userData.name.trim()) {
-      throw new Error(`La propiedad 'name' es requerida`);
-    }
-  
-    if (userData.username && !userData.username.trim()) {
-      throw new Error(`La propiedad 'username' no puede ser vacía`);
-    }
-  
-    if (userData.password && !userData.password.trim()) {
-      throw new Error(`La propiedad 'password' no puede ser vacía`);
-    }
-  
-    if (
-      !userData.age ||
-      isNaN(userData.age) ||
-      userData.age < 18 ||
-      userData.age > 200
-    ) {
-      throw new Error(`La propiedad 'age' es inválida`);
-    }
+    if (!taskData.title || !taskData.title.trim()) {
+      throw new Error(`Debe ingresar un título`);
+    }    
   };
 
   module.exports = {
@@ -74,25 +57,7 @@ let connection;
       connection = await mysql.createConnection(DB_CONFIG)
     },
   
-    /**
-   * Buscar usuarios.
-   *
-   * @param {TFilterQuery} query Query de búsqueda.
-   * @returns {TUserDB[]}
-   */
-  async search(query) {
-    const paramsString = Object.keys(query) // ["name", "password"]
-      .map((elem) => `${elem} = ?`) // ["name = ?", "password = ?"]
-      .join(' AND '); // "name = ? AND password = ?"
-
-    const [users] = await connection.execute(
-      `SELECT * FROM users WHERE ${paramsString}`,
-      Object.values(query)
-    );
-
-    return users;
-  }
-
+  
    /**
    * Listar.
    *
@@ -112,4 +77,42 @@ let connection;
   
       return tasks;
     },
+
+  /**
+   * Buscar usuarios.
+   *
+   * @param {TFilterQuery} query Query de búsqueda.
+   * @returns {TUserDB[]}
+   */
+  async search(query) {
+    const paramsString = Object.keys(query) // ["name", "password"]
+      .map((elem) => `${elem} = ?`) // ["name = ?", "password = ?"]
+      .join(' AND '); // "name = ? AND password = ?"
+
+    const [users] = await connection.execute(
+      `SELECT * FROM users WHERE ${paramsString}`,
+      Object.values(query)
+    );
+
+    return users;
+  },
+
+
+    
+  /**
+   * Agregar una tarea.
+   *
+   * @param {TTask} taskData
+   */
+   async add(taskData) {
+    validateTask(taskData);
+    const { title, description } = taskData;
+    const [result] = await connection.execute(
+      'INSERT INTO tasks(title, description) VALUES(?, ?)',
+      [title, description]
+    );
+
+    return await [{Título: title, Descripción: description}];
+  },
 };
+
