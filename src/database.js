@@ -96,8 +96,8 @@ let connection;
    /**
    * Listar.
    *
-   * @param {string|undefined} filteTasks Filtrar por nombre.
-   * @returns {TUserDB[]}
+   * @param {string|undefined} filteTasks Filtrar por tarea.
+   * @returns {TTasksDB[]}
    */
     async list(filterTasks) {
       const [tasks] = await connection.execute('SELECT * FROM tasks');
