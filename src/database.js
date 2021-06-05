@@ -69,29 +69,47 @@ let connection;
     }
   };
 
-
-module.exports = {
+  module.exports = {
     async initDB() {
       connection = await mysql.createConnection(DB_CONFIG)
     },
   
     /**
-   * Buscar Tareas.
+   * Buscar usuarios.
    *
    * @param {TFilterQuery} query Query de búsqueda.
-   * @returns {TTasksDB[]}
+   * @returns {TUserDB[]}
    */
   async search(query) {
-    const paramsString = Object.keys(query) // ["title", "description", "state", "idusers", "created_at", "updated_at"]
-      .map((elem) => `${elem} = ?`) // ["title = ?", "description = ?", "state = ?", "idusers = ?", "created_at = ?", "updated_at = ?"]
-      .join(' AND '); // "title = ? AND description = ? AND state = ? AND iduser = ? AND created_at = ? AND update_at = ?"
+    const paramsString = Object.keys(query) // ["name", "password"]
+      .map((elem) => `${elem} = ?`) // ["name = ?", "password = ?"]
+      .join(' AND '); // "name = ? AND password = ?"
 
-    const [tasks] = await connection.execute(
-      `SELECT * FROM tasks WHERE ${paramsString}`,
+    const [users] = await connection.execute(
+      `SELECT * FROM users WHERE ${paramsString}`,
       Object.values(query)
     );
 
-    return tasks;
+    return users;
   }
-};
 
+   /**
+   * Listar.
+   *
+   * @param {string|undefined} filteTasks Filtrar por nombre.
+   * @returns {TUserDB[]}
+   */
+    async list(filterTasks) {
+      const [tasks] = await connection.execute('SELECT * FROM tasks');
+  
+      // if (filterName && filterName.trim()) {
+      //   filterName = filterName.trim().toLowerCase();
+  
+      //   users = users.filter((user) =>
+      //     user.name.toLowerCase().includes(filterName)
+      //   );
+      // }
+  
+      return tasks;
+    },
+};
