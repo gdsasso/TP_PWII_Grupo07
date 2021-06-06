@@ -104,13 +104,13 @@ let connection;
    */
    async add(taskData) {
     validateTask(taskData);
-    const { title, description } = taskData;
+    const { title, description, idUsers } = taskData;
     const [result] = await connection.execute(
-      'INSERT INTO tasks(title, description) VALUES(?, ?)',
-      [title, description]
+      'INSERT INTO tasks(title, description, idusers) VALUES(?, ?, ?)',
+      [title, description, idUsers]
     );
 
-    return await [{Título: title, Descripción: description}];
+    return await [{Título: title, Descripción: description, Usuario: idUsers}];
   },
 
 

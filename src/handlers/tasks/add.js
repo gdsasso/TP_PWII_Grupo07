@@ -10,13 +10,14 @@ module.exports = (route) => {
     requestHandler(async (req, res) => {
       const title = req.body.title;
       const description = req.body.description;
-
-
+      const idUsers = req.body.idusers;
+      
       const newTask = await database.add({
+        idUsers, 
         title,
-        description,
+        description,               
       });
-
+     
       res.json(newTask);
     })
   );
