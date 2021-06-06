@@ -112,5 +112,80 @@ let connection;
 
     return await [{Título: title, Descripción: description}];
   },
+
+
+  /**
+   * Buscar un task por ID.
+   *
+   * @param {number} taskId ID de Usuario.
+   * @returns {TTaskDB | undefined}
+   */
+   async find(taskId) {
+    const [tasks] = await connection.execute(
+      'SELECT * FROM tasks WHERE idtasks = ?',
+      [taskId]
+    );
+
+    if (tasks.length > 0) {
+      return tasks[0];
+    } else {
+      return undefined;
+    }
+  },
+
+
+  /**
+   * Actualizar un task.
+   *
+   * @param {number} taskId
+   * @param {TTask & {
+   *    title?: string,
+   *    description?: string,
+   *    state?:string,
+   *  }} newTaskData
+   */
+  async update(taskId, newTaskData) {
+    const task = await this.find(taskId);
+
+    //console.log(newTaskData);
+    //console.log(task);
+
+    if (!task) {
+      throw new ResourceNotFoundError(
+        `No existe una tarea con ID "${taskId}"`,
+        'task',
+        taskId
+      );
+    }
+
+    validateTask(newTaskData);
+
+    // Actualiza datos
+
+    if (newTaskData.title) {
+      task.title = newTaskData.title;
+    }
+
+    if (newTaskData.description) {
+      task.description = newTaskData.description;
+    }
+
+    if (newTaskData.state) {
+      task.state = newTaskData.state;
+    }
+
+    task.title = newTaskData.title;
+    task.description = newTaskData.description;
+    task.state = newTaskData.state;
+
+    await connection.execute(
+      'UPDATE tasks SET title = ?, description = ?, state = ?, idusers = ? WHERE idtasks = ?',
+      [task.title, task.description, task.state,1, task.idtasks]
+    );
+
+    return task;
+  },
+
+
 };
 
