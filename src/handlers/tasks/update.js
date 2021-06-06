@@ -1,7 +1,7 @@
 const database = require('../../database');
 const validateTitle = require('../../validations/tasks/validateTitle');
 const validateErrors = require('../../validations/validateErrors');
-
+const requestHandler = require('../../middlewares/requestHandler');
 
 /**
  * PUT /api/tasks/:taskId
@@ -13,7 +13,7 @@ const validateErrors = require('../../validations/validateErrors');
       '/:taskId',
       validateTitle,
       validateErrors,
-      async (req, res) => {
+      requestHandler(async (req, res) => {
         const taskId = parseInt(req.params.taskId);
         const title = req.body.title;
         const description = req.body.description;
@@ -26,6 +26,6 @@ const validateErrors = require('../../validations/validateErrors');
         });
   
         res.json(task);
-      }
+      })
     );
   };
