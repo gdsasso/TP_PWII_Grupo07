@@ -146,7 +146,7 @@ let connection;
    */
   async update(taskId, newTaskData) {
     const task = await this.find(taskId);
-
+    const updated_at = new Date();
     //console.log(newTaskData);
     //console.log(task);
 
@@ -179,11 +179,32 @@ let connection;
     task.state = newTaskData.state;
 
     await connection.execute(
-      'UPDATE tasks SET title = ?, description = ?, state = ?, idusers = ? WHERE idtasks = ?',
-      [task.title, task.description, task.state,1, task.idtasks]
+      'UPDATE tasks SET title = ?, description = ?, state = ?, idusers = ?, updated_at = ? WHERE idtasks = ?',
+      [task.title, task.description, task.state,1, updated_at ,task.idtasks]
     );
 
     return task;
+  },
+
+  /**
+   * Edita el estado del task a Eliminada.
+   *
+   * @param {number} taskId
+   */
+   async remove(taskId) {
+    const task = await this.find(taskId);
+    const delete_at = new Date();
+
+    if (!task) {
+      throw new ResourceNotFoundError(
+        `No existe un task con ID "${taskId}"`,
+        'user',
+        taskId
+      );
+    }
+
+    await connection.execute('UPDATE tasks SET state = ?, delete_at = ? WHERE idtasks = ?', 
+    ['Eliminada',delete_at,task.idtasks]);
   },
 
 
