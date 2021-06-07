@@ -37,8 +37,9 @@ CREATE TABLE IF NOT EXISTS `tasksDatabase`.`tasks` (
   `description` MEDIUMTEXT NULL,
   `state` VARCHAR(10) NOT NULL DEFAULT 'Pendiente',
   `idusers` INT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `delete_at` datetime NOT NULL,
   PRIMARY KEY (`idtasks`),
   INDEX `idusers_idx` (`idusers` ASC),
   CONSTRAINT `idusers`
