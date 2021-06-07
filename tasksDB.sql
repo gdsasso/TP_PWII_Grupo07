@@ -27,6 +27,11 @@ CREATE TABLE IF NOT EXISTS `tasksDatabase`.`users` (
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB;
 
+INSERT INTO users (name, password)
+values ("Juan", "123");
+
+INSERT INTO users (name, password)
+values ("Ana", "321");
 
 -- -----------------------------------------------------
 -- Table `tasksDatabase`.`tasks`
@@ -37,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `tasksDatabase`.`tasks` (
   `description` MEDIUMTEXT NULL,
   `state` VARCHAR(10) NOT NULL DEFAULT 'Pendiente',
   `idusers` INT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `delete_at` datetime NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `delete_at` datetime,
   PRIMARY KEY (`idtasks`),
   INDEX `idusers_idx` (`idusers` ASC),
   CONSTRAINT `idusers`
