@@ -1,11 +1,12 @@
 const database = require('../../database');
+const validateTitle = require("../../validations/tasks/validateTitle");
 const validateErrors = require('../../validations/validateErrors');
 const requestHandler = require('../../middlewares/requestHandler');
 
 module.exports = (route) => {
   route.post(
     '/',
-    
+    validateTitle,
     validateErrors,
     requestHandler(async (req, res) => {
       const title = req.body.title;
