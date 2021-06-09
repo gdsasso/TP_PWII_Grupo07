@@ -11,7 +11,7 @@ const authenticateJWT = (req, res, next) => {
     jwt.verify(token, JWT_SECRET, (err, session) => {
       if (err) {
         console.error('Error al verificar el JWT', err);
-        return res.sendStatus(403);
+        return res.status(403).json({message: "sesión expirada"});
       }
 
       req.session = session;
