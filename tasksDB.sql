@@ -27,10 +27,10 @@ CREATE TABLE IF NOT EXISTS `tasksDatabase`.`users` (
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB;
 
-INSERT INTO users (name, password)
+INSERT INTO users (username, password)
 values ("Juan", "123");
 
-INSERT INTO users (name, password)
+INSERT INTO users (username, password)
 values ("Ana", "321");
 
 -- -----------------------------------------------------
