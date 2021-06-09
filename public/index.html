@@ -16,14 +16,15 @@
     </div>
     <div id="login-page" class="row">
         <div class="animated bounceInDown delay-0s card-panel">
-          <form class="login-form">
-            <div class="row">
+          <form class="login-form" id="form-login">
+            <div class="row" id="messageErrorLogin">
+              
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <i class="material-icons prefix">mail_outline</i>
-                <input class="validate" id="email" type="email">
-                <label for="email" data-error="wrong" data-success="right">Email</label>
+                <i class="material-icons prefix">face</i>
+                <input class="validate" id="username" type="text">
+                <label for="username" data-error="wrong" data-success="right">Nombre</label>
               </div>
             </div>
             <div class="row">
@@ -35,13 +36,14 @@
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <a href="tasks.html" class="btn waves-effect waves-light col s12">Ingresar</a>
+                <a class="btn waves-effect waves-light col s12" onclick="login()">Ingresar</a>
               </div>
             </div>
           </form>
         </div>
       </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="login.js"></script>    
 </body>
 </html>

@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
-<body>
+<body onload="paintUsername()">
     <nav>
         <div class="nav-wrapper teal lighten-2">
           <a href="#!" class="brand-logo ">appTasks</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="#">Bienvenido nombre usuario</a></li>
-            <li><a href="index.html">Cerrar Sesion</a></li>
+            <li id="textUsername"></li>
+            <li><a onclick="logout()">Cerrar Sesion</a></li>
             
             
           </ul>
@@ -26,8 +26,8 @@
       </nav>
     
       <ul class="sidenav" id="mobile-demo">
-        <li><a href="#">Bienvenido nombre usuario</a></li>
-        <li><a href="index.html">Cerrar Sesion</a></li>
+        <li id="textUsernameMobile"></li>
+        <li><a onclick="logout()">Cerrar Sesion</a></li>
       </ul>
 
       <div class="row">
@@ -155,6 +155,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="login.js"></script>
     <script src="app.js"></script>
     
 </body>
