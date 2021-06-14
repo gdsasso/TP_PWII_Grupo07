@@ -70,21 +70,21 @@
         <div class="col s3"></div>
         <div id="cardFormTasksEdit" class="col s6 card-panel animated bounceIn delay-0s">
             <h5 class="text-title">Editar tarea</h5>
-            <form class="form-tasks">
+            <form id="edit-form-tasks">
                 <div class="row">
                     <div class="input-field col s6">
-                    <input id="inputTitle" type="text" class="validate">
-                    <label for="inputTitle">Tarea</label>
+                    <input id="editedInputTitle" type="text" class="validate">
+                    <label for="editedInputTitle">Tarea</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="inputDescription" class="materialize-textarea"></textarea>
-                        <label for="inputDescription">Descripción</label>
+                        <textarea id="editedInputDescription" class="materialize-textarea"></textarea>
+                        <label for="editedInputDescription">Descripción</label>
                     </div>
                 </div>
                 <div class="row right-align">
-                    <button class="btn waves-effect waves-light " type="submit" name="action" >Editar
+                    <button class="btn waves-effect waves-light " type="submit" name="action" onclick="saveUpdateTask()" >Editar
                         <i class="material-icons right">send</i>
                       </button>
                 </div>

@@ -25,6 +25,8 @@ const templateRow = document.getElementById('contentRow').content;
   const cardFormTasksEdit = document.getElementById('cardFormTasksEdit');
   const buttoneditTasks = document.getElementsByClassName('buttonEditTasks');
 
+  //Formulario Edit
+  const editForm = document.getElementById('edit-form-tasks'); 
   
 
   buttonAddTasks.addEventListener('click', () => showFormAdd());
@@ -151,4 +153,27 @@ async function createTask() {
     createUserForm.reset();
     loadTable();
   }*/
+};
+
+async function updateTask(id) {
+  editingTaskId = id;
+  cardFormTasksEdit.style.display = '';
+
+  const task = await api('get', `/task/${id}`);
+  console.log(editForm);
+  // updateUserFormContent.querySelector('#user-id').innerText = id;
+  editForm.querySelector('#editedInputTitle').value = task.title;
+  editForm.querySelector('#editedInputDescription').value = task.description;
+}
+
+async function saveUpdateTask() {
+  const title = editForm.querySelector('#editedInputTitle').value;
+  const age = editForm.querySelector('#editedInputDescription').value;
+
+  await api('put', `/task/${editingTaskId}`, {
+    title,
+    description,
+  });
+
+  loadTable();
 }
