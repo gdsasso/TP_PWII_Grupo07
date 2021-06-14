@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const liUserName = document.getElementById('textUsername');
   const liUserNameMobile = document.getElementById('textUsernameMobile');
+  const inputTitle = document.getElementById('inputTitle');
+  const inputDescription = document.getElementById('inputDescription');
   
   const userLoged =localStorage.getItem('idUser')  
 
@@ -121,3 +123,32 @@ async function deleteTask(id) {
   taskRow.remove();
   }
   
+
+  /**
+ * Crear usuario.
+ */
+async function createTask() {
+
+ 
+  const title = inputTitle.value;
+  const description = inputDescription.value;
+  const idusers = localStorage.getItem('idUser');
+
+  //resetFormErrors();
+  alert(title);
+  alert(description);
+  alert(idusers);
+
+  const response = await api('post', '/task', {
+    title,
+    description,
+    idusers,
+  });
+
+  /*if (response.errors) {
+    updateFormErrors(response.errors);
+  } else {
+    createUserForm.reset();
+    loadTable();
+  }*/
+}
