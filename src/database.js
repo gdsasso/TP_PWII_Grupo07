@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 const { DB_CONFIG } = require('./config');
-
+// const userLoged = require('../public/app');
 let connection;
 
 /**
@@ -63,16 +63,7 @@ let connection;
    * @returns {TTasksDB[]}
    */
   async list(filterTasks) {
-      const [tasks] = await connection.execute('SELECT * FROM tasks');
-  
-      // if (filterName && filterName.trim()) {
-      //   filterName = filterName.trim().toLowerCase();
-  
-      //   users = users.filter((user) =>
-      //     user.name.toLowerCase().includes(filterName)
-      //   );
-      // }
-  
+      const [tasks] = await connection.execute('SELECT * FROM tasks WHERE state != "Eliminada"');
       return tasks;
     },
 

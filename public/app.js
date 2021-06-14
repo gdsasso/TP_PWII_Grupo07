@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const liUserName = document.getElementById('textUsername');
   const liUserNameMobile = document.getElementById('textUsernameMobile');
   
+  const userLoged =localStorage.getItem('idUser')  
 
   // Referencia a la tabla de contenido
 const contentTable = document.getElementById('contentTable');
@@ -68,7 +69,7 @@ const templateRow = document.getElementById('contentRow').content;
  * @param {*} state
  * @param {*} idtasks
  */
- function addRow(title, description, state,idtasks) {
+ function addRow(title, description, state, idtasks) {
   // Clono el template en una nueva variable
   const row = templateRow.cloneNode(true);
 
@@ -77,8 +78,8 @@ const templateRow = document.getElementById('contentRow').content;
   row.querySelector('.txtDescription').innerText = description;
   row.querySelector('.txtState').innerText = state;
 
-  row.querySelector('.buttonDeleteTasks').onclick = () => deleteUser(id);
-  row.querySelector('.buttonEditTasks').addEventListener('click', () => updateUser(id));
+  row.querySelector('.buttonDeleteTasks').onclick = () => deleteTask(idtasks);
+  row.querySelector('.buttonEditTasks').addEventListener('click', () => updateTask(idtasks));
 
   row.querySelector('.td-row').dataset.id = idtasks;
 
@@ -96,8 +97,8 @@ async function loadTable() {
   if (localStorage.getItem('token')) {
     contentTable.innerHTML = '';
     const data = await api('get', '/task');
-    console.log(data);
-    data.forEach(({ title, description, state, idtasks }) => addRow(title, description, state,idtasks));
+    console.log(userLoged);
+    data.forEach(({ title, description, state, idtasks }) => addRow(title, description, state, idtasks));
   }
 }
 
@@ -112,3 +113,11 @@ async function loadTable() {
   cardFormTasksAdd.style.display = 'none';
   cardFormTasksEdit.style.display = 'none';
 
+
+async function deleteTask(id) {
+  await api('delete', `/task/${id}`);
+  
+  const taskRow = document.querySelector(`[data-id='${id}']`);
+  taskRow.remove();
+  }
+  
