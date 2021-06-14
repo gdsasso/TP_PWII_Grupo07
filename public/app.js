@@ -158,6 +158,7 @@ async function createTask() {
 async function updateTask(id) {
   editingTaskId = id;
   cardFormTasksEdit.style.display = '';
+  cardFormTasksAdd.style.display = 'none';
 
   const task = await api('get', `/task/${id}`);
   console.log(editForm);
@@ -168,12 +169,28 @@ async function updateTask(id) {
 
 async function saveUpdateTask() {
   const title = editForm.querySelector('#editedInputTitle').value;
-  const age = editForm.querySelector('#editedInputDescription').value;
+  const description = editForm.querySelector('#editedInputDescription').value;
+  const stateCompletada = document.getElementById('stateCompletada');
+  const statePendiente = document.getElementById('statePendiente');
+  let state="";
+
+  if (stateCompletada.checked) {
+    state ="Completada";
+    
+    
+  }else if(statePendiente.checked){
+     state ="Pendiente";
+     
+  }
+  
+  
+ 
 
   await api('put', `/task/${editingTaskId}`, {
     title,
     description,
+    state
   });
 
-  loadTable();
+  //loadTable();
 }
