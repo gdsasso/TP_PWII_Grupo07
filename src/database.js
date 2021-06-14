@@ -62,8 +62,8 @@ let connection;
    * @param {string|undefined} filteTasks Filtrar por tarea.
    * @returns {TTasksDB[]}
    */
-  async list(filterTasks) {
-      const [tasks] = await connection.execute('SELECT * FROM tasks WHERE state != "Eliminada"');
+  async list(filterTasks,idSession) {
+      const [tasks] = await connection.execute(`SELECT * FROM tasks WHERE idusers=${idSession} and state != "Eliminada"`);
       return tasks;
     },
 

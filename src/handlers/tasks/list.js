@@ -6,7 +6,8 @@ module.exports = (route) => {
   route.get(
     '/',
     requestHandler(async (req, res) => {
-      const tasks = await database.list(req.query.filterTasks);
+      
+      const tasks = await database.list(req.query.filterTasks,req.session.id);
       res.json(tasks);
     })
   );

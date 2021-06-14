@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const inputTitle = document.getElementById('inputTitle');
   const inputDescription = document.getElementById('inputDescription');
   
-  const userLoged =localStorage.getItem('idUser')  
+    
 
   // Referencia a la tabla de contenido
 const contentTable = document.getElementById('contentTable');
@@ -101,7 +101,7 @@ async function loadTable() {
   if (localStorage.getItem('token')) {
     contentTable.innerHTML = '';
     const data = await api('get', '/task');
-    console.log(userLoged);
+    
     data.forEach(({ title, description, state, idtasks }) => addRow(title, description, state, idtasks));
   }
 }
@@ -136,10 +136,7 @@ async function createTask() {
   const description = inputDescription.value;
   const idusers = localStorage.getItem('idUser');
 
-  //resetFormErrors();
-  alert(title);
-  alert(description);
-  alert(idusers);
+  
 
   const response = await api('post', '/task', {
     title,
@@ -161,8 +158,8 @@ async function updateTask(id) {
   cardFormTasksAdd.style.display = 'none';
 
   const task = await api('get', `/task/${id}`);
-  console.log(editForm);
-  // updateUserFormContent.querySelector('#user-id').innerText = id;
+  
+  
   editForm.querySelector('#editedInputTitle').value = task.title;
   editForm.querySelector('#editedInputDescription').value = task.description;
 }
