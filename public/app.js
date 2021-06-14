@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Referencia a la tabla de contenido
 const contentTable = document.getElementById('contentTable');
 // Referencia al template
-/*const templateRow = document.getElementById('contentRow').content;*/
+const templateRow = document.getElementById('contentRow').content;
 
   //Agregar tasks
   const cardFormTasksAdd = document.getElementById('cardFormTasksAdd');
@@ -54,8 +54,59 @@ const contentTable = document.getElementById('contentTable');
       liUserName.innerHTML = '';
       liUserNameMobile.innerHTML ='';
     }
+
+    initApp();
     
   }
+
+
+/**
+ * Agregar Row.
+ *
+ * @param {*} title
+ * @param {*} description
+ * @param {*} state
+ * @param {*} idtasks
+ */
+ function addRow(title, description, state,idtasks) {
+  // Clono el template en una nueva variable
+  const row = templateRow.cloneNode(true);
+
+  // Modifico el valor del nodo de texto por el ingesado por el usuario
+  row.querySelector('.txtTitle').innerText = title;
+  row.querySelector('.txtDescription').innerText = description;
+  row.querySelector('.txtState').innerText = state;
+
+  row.querySelector('.buttonDeleteTasks').onclick = () => deleteUser(id);
+  row.querySelector('.buttonEditTasks').addEventListener('click', () => updateUser(id));
+
+  row.querySelector('.td-row').dataset.id = idtasks;
+
+  // Inserto en el contenido de la tabla
+  contentTable.appendChild(row);
+}
+
+
+
+
+  /**
+ * Cargar datos de la tabla.
+ */
+async function loadTable() {
+  if (localStorage.getItem('token')) {
+    contentTable.innerHTML = '';
+    const data = await api('get', '/task');
+    console.log(data);
+    data.forEach(({ title, description, state, idtasks }) => addRow(title, description, state,idtasks));
+  }
+}
+
+/**
+ * Inicio de la APP.
+ */
+ async function initApp() {
+  await loadTable();
+}
 
 
   cardFormTasksAdd.style.display = 'none';

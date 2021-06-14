@@ -101,9 +101,9 @@
 
       <div class="row">
         <div class="col s12 m4 l1"></div>
-        <div class="col s12 m4 l10">
-            <!--<template id="contentRow">-->
-                <table class="highlight" id="contentTable">
+        <div class="col s12 m4 l10" id="">
+           
+             <table class="highlight">
                 <thead>
                 <tr>
                     <th>Tarea</th>
@@ -113,44 +113,31 @@
                 </tr>
                 </thead>
         
-                <tbody>
-                <tr>
-                    <td>Terminar base de datos</td>
-                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
-                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
-                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
-                    </td>
-                    <td>Pendiente</td>
-                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
-                </tr>
-                <tr>
-                    <td>Terminar frontend</td>
-                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
-                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
-                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
-                    </td>
-                    <td>Pendiente</td>
-                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
-                </tr>
-                <tr>
-                    <td>Terminar backend</td>
-                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
-                        Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
-                        non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
-                    </td>
-                    <td>Pendiente</td>
-                    <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
-                </tr>
+                <tbody id="contentTable">
                 </tbody>
             </table>
-        <!--</template>-->
+        
         </div>
         <div class="col s12 m4 l1"></div>
+
+        
+
         
       </div>
 
       
-     
+    <template id="contentRow">
+            <tr class="td-row">
+                <td class="txtTitle">Terminar base de datos</td>
+                <td class="txtDescription">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, velit? 
+                    Voluptates, cum inventore saepe exercitationem, magnam laudantium voluptatibus 
+                    non sit aliquam eligendi, ex sint incidunt velit. Voluptatem impedit debitis magnam!
+                </td>
+                <td class="txtState">Pendiente</td>
+                <td><a class="waves-effect waves-light btn-small buttonEditTasks"><i class="material-icons">edit</i></a></td>
+                <td><a class="waves-effect waves-light btn-small buttonDeleteTasks"><i class="material-icons">delete</i></a></td>
+            </tr>
+    </template>
     
 
 
